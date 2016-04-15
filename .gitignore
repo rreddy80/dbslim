@@ -20,4 +20,4 @@ target/
 *.tar.gz
 .classpath
 .project
-
+bin/
