@@ -48,6 +48,26 @@ Oracle database connection example given below.
 | check | rowsUpdated; | 1 |
 </pre>
 
+## Fitnesse Test Delete Query Examples
+
+<pre class="prettyprint" data-lang="fitnesse">
+!define currentCustomerId {101}
+!define currentCustomerUsername {user101}
+!define currentCustomerPassword {password101}
+</pre>
+
+
+<pre class="prettyprint" data-lang="fitnesse">
+| script | Db Slim Delete Query | Delete from customer_balances Where customer_id = ${currentCustomerId} |
+| check | rowsDeleted; | 1 |
+</pre>
+
+
+<pre class="prettyprint" data-lang="fitnesse">
+|Query:Db Slim Delete Query | Delete from customer_balances Where customer_id = ${currentCustomerId} |
+| rowsDeleted | 
+| 1 |
+</pre>
 
 ## Fitnesse Test Select Query Examples
 
