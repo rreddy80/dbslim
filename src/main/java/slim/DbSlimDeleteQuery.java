@@ -66,6 +66,46 @@ public class DbSlimDeleteQuery {
 		
 	}
 	
+	public String data(String columnId, String rowIndex){
+		
+		try{
+			Integer.parseInt(columnId);
+			return dataByColumnIndexAndRowIndex(columnId, rowIndex);
+		}catch(NumberFormatException e){
+			return dataByColumnNameAndRowIndex(columnId, rowIndex);
+		}
+		 
+	}
+	
+	public String dataByColumnIndexAndRowIndex(String columnIndex, String rowIndex){
+		
+		int rowIndexInteger = Integer.parseInt(rowIndex);
+		int columnIndexInteger = Integer.parseInt(columnIndex);
+		
+		List<List<List<String>>> dataTable = getDataTable();
+				
+		return dataTable.get(rowIndexInteger).get(columnIndexInteger).get(1);
+	}
+	
+	
+	public String dataByColumnNameAndRowIndex(String columnName, String rowIndex){
+		
+		int rowIndexInteger = Integer.parseInt(rowIndex);
+		
+		List<List<List<String>>> dataTable = getDataTable();
+				
+		List<List<String>> dataRow = dataTable.get(rowIndexInteger);
+		
+		for (List<String> dataItem : dataRow) {
+			if (String.valueOf(dataItem.get(0)).toUpperCase().equals(String.valueOf(columnName).toUpperCase())){
+				return dataItem.get(1);
+			}
+		}
+		
+		return null;
+	}
+
+	
 	public String rowsDeleted(){
 		List<List<List<String>>> dataTable = getDataTable();
 		return dataTable.get(0).get(0).get(1);
